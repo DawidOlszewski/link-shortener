@@ -9,4 +9,12 @@ export class UsersService {
   async registerUser(registerUser: RegisterUser) {
     return this.usersRepo.registerUser(registerUser);
   }
+
+  async activateUser(email: string) {
+    await this.usersRepo.activateUser(email);
+  }
+
+  async getByEmail(email: string) {
+    return this.usersRepo.findByEmail(email);
+  }
 }
