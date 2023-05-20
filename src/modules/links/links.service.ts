@@ -3,7 +3,7 @@ import { randomBytes } from 'crypto';
 import { promisify } from 'util';
 
 @Injectable()
-export class LinkService {
+export class LinksService {
   private tempDict = new Map<string, string>([
     ['google', 'https://www.google.com'],
   ]);

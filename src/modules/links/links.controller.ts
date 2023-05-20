@@ -7,11 +7,11 @@ import {
   Post,
   Redirect,
 } from '@nestjs/common';
-import { LinkService } from './link.service';
+import { LinksService } from './links.service';
 
 @Controller()
-export class LinkContoller {
-  constructor(private linkService: LinkService) {}
+export class LinksContoller {
+  constructor(private linkService: LinksService) {}
 
   @Get(':link')
   @Redirect()

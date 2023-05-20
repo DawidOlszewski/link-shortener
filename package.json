@@ -2,10 +2,13 @@
   "name": "link-shortner",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Dawid Olszewski",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "knex": "knex --knexfile \"./src/modules/database/db.config.ts\"",
+    "migrate:latest" : "npm run knex migrate:latest",
+    "migrate:make": "npm run knex migrate:make",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -23,8 +26,13 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@willsoto/nestjs-objection": "^8.1.0",
+    "knex": "^2.4.2",
+    "objection": "^3.0.1",
+    "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "sqlite3": "^5.1.6"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
@@ -45,7 +53,7 @@
     "supertest": "^6.1.3",
     "ts-jest": "29.0.5",
     "ts-loader": "^9.2.3",
-    "ts-node": "^10.0.0",
+    "ts-node": "^10.9.1",
     "tsconfig-paths": "4.2.0",
     "typescript": "^4.7.4"
   },
@@ -64,6 +72,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@nsflow/(.*)$": "<rootDir>/$1"
+    }
   }
 }
