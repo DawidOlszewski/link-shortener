@@ -12,10 +12,15 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@devices/*": ["src/modules/devices/*"],
+      "@links/*": ["src/modules/links/*"],
+      "@users/*": ["src/modules/users/*"],
+    }
   }
 }
