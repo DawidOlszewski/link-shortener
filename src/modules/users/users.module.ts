@@ -9,5 +9,6 @@ import { UsersController } from './users.controller';
   providers: [UsersRepository, UsersService, UsersModule],
   controllers: [UsersController],
   imports: [ObjectionModule.forFeature([User])],
+  exports: [UsersService],
 })
 export class UsersModule {}

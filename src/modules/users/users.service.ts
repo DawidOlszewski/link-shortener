@@ -9,4 +9,15 @@ export class UsersService {
   async registerUser(registerUser: RegisterUser) {
     return this.usersRepo.registerUser(registerUser);
   }
+
+  async activateUser(email: string) {
+    await this.usersRepo.activateUser(email);
+  }
+
+  async getByEmail(email: string) {
+    const user = await this.usersRepo.findByEmail(email);
+    console.log('get by emial users service', user);
+
+    return user;
+  }
 }
