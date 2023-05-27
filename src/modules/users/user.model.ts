@@ -1,6 +1,11 @@
 import { Model } from 'objection';
 
 export class User extends Model {
+  id!: string;
+  username!: string;
+  email!: string;
+  active!: boolean;
+
   static get tableName() {
     return 'users';
   }
@@ -11,7 +16,7 @@ export class User extends Model {
       required: ['email', 'username'],
 
       properties: {
-        id: { type: 'integer' }, //TODO: uuid
+        id: { type: 'string' }, //TODO: uuid
         username: { type: 'string' },
         email: { type: 'string' },
         active: { type: 'boolean', default: false },

@@ -21,7 +21,14 @@ export class AuthController {
   @Get('login/callback')
   @UseGuards(AuthGuard('magiclogin'))
   async callback(@CurrentUser() user: User) {
-    console.log('controller');
     return this.authService.generateTokens(user);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('secure')
+  async secure(@CurrentUser() user: User) {
+    console.log('controller sec', user);
+
+    return user;
   }
 }

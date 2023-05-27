@@ -15,6 +15,9 @@ export class UsersService {
   }
 
   async getByEmail(email: string) {
-    return this.usersRepo.findByEmail(email);
+    const user = await this.usersRepo.findByEmail(email);
+    console.log('get by emial users service', user);
+
+    return user;
   }
 }
