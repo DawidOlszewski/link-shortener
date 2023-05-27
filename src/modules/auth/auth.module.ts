@@ -14,7 +14,7 @@ import getenv from 'getenv';
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: 'password',
+      secret: getenv('AUTHORIZATION_SECRET'),
       signOptions: { expiresIn: '1h' },
     }),
     MailerModule.forRoot({

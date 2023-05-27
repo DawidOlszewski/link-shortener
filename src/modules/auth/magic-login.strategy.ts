@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { User } from '@users/user.model';
 import { MailerService } from '@nestjs-modules/mailer';
+import getenv from 'getenv';
 
 @Injectable()
 export class MagicLoginStrategy extends PassportStrategy(Strategy) {
@@ -12,13 +13,12 @@ export class MagicLoginStrategy extends PassportStrategy(Strategy) {
     private mailerService: MailerService,
   ) {
     super({
-      secret: 'password', //getenv('PASSPORT_SECRET', 'FIXME: deleteme'),
+      secret: getenv('AUTHORIZATION_SECRET'),
       jwtOptions: {
         expiresIn: '5m',
       },
       callbackUrl: 'http://localhost:3000/login/callback',
       sendMagicLink: async (destination: string, href: string) => {
-        //TODO: send email
         console.log({ destination, href });
         this.mailerService.sendMail({
           to: 'dawid.olszewski.dev@gmail.com',

@@ -10,8 +10,8 @@ export async function up(knex: Knex): Promise<void> {
 
   await knex.schema.createTable('visits', (table) => {
     table.uuid('id', { primaryKey: true });
-    table.string('linkId').references('id').inTable('links').notNullable();
-    table.string('deviceId').references('id').inTable('devices').notNullable();
+    table.uuid('linkId').references('id').inTable('links').notNullable();
+    table.uuid('deviceId').references('id').inTable('devices').notNullable();
     table.string('location');
   });
 }

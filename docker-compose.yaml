@@ -1,0 +1,28 @@
+version: '2.1'
+
+services:
+  backend:
+    image: node:18
+    user: "${UID}:${UID}"
+    command: "npm run start:dev"
+    working_dir: /app
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    links:
+      - postgres
+    ports:
+      - 3000:3000
+    environment:
+      DB_HOST: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: bro123
+      DB_DATABASE: link-shortener
+      DB_PORT: 5432
+
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: bro123
+      POSTGRES_DB: link-shortener
