@@ -3,7 +3,7 @@ version: '2.1'
 services:
   backend:
     image: node:18
-    user: "1000:1000" #${UID}:${UID}
+    user: "1000:1000" #TODO: ${UID}:${UID}
     command: "npm run start:dev"
     working_dir: /app
     volumes:
@@ -19,6 +19,8 @@ services:
       DB_PASSWORD: bro123
       DB_DATABASE: link-shortener
       DB_PORT: 5432
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
 
   postgres:
     image: postgres
