@@ -16,7 +16,7 @@ export class User extends Model {
       required: ['email', 'username'],
 
       properties: {
-        id: { type: 'string' }, //TODO: uuid
+        id: { type: 'string' },
         username: { type: 'string' },
         email: { type: 'string' },
         active: { type: 'boolean', default: false },

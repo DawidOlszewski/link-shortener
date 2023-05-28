@@ -1,7 +1,7 @@
 import { User } from '@users/user.model';
 import { Model } from 'objection';
 
-export class Device {
+export class Device extends Model {
   static get tableName() {
     return 'devices';
   }

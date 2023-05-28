@@ -2,9 +2,29 @@ import { Model } from 'objection';
 import { Device } from '@devices/device.model';
 import { Link } from './link.model';
 
-export class Visit {
+export class Visit extends Model {
+  id!: string;
+  linkId!: string;
+  deviceId!: string;
+  location!: string;
+  device?: Device;
+  link?: Link;
+
   static get tableName() {
-    return 'visitation';
+    return 'visits';
+  }
+
+  static get jsonSchema() {
+    return {
+      type: 'object',
+      required: ['deviceId', 'location', 'linkId'],
+      properties: {
+        id: { type: 'string' },
+        deviceId: { type: 'string' },
+        linkId: { type: 'string' },
+        location: { type: 'string' },
+      },
+    };
   }
 
   static get relationMappings() {
