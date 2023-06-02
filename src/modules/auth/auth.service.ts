@@ -25,4 +25,9 @@ export class AuthService {
 
     return { 'access-token': await this.jwtService.signAsync(jwtPayload) };
   }
+
+  async generateTestToken() {
+    const user = await this.usersService.getByEmail('dawid@gmail.com');
+    return this.generateTokens(user);
+  }
 }

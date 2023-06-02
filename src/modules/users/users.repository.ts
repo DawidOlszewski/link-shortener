@@ -13,8 +13,18 @@ export class UsersRepository {
     await this.userModel.query().patch({ active: true }).findOne({ email });
   }
 
-  async findByEmail(email: string) {
+  async getByEmail(email: string) {
     const user = await this.userModel.query().findOne({ email });
+    console.log({ email, user });
+    if (!user) {
+      throw new NotFoundException();
+    }
+
+    return user;
+  }
+
+  async getById(id: string) {
+    const user = await this.userModel.query().findOne({ id });
     if (!user) {
       throw new NotFoundException();
     }

@@ -8,6 +8,8 @@ import { UsersModule } from '@users/users.module';
 import { JwtStrategy } from './jwt.strategy';
 import { MailerModule } from '@nestjs-modules/mailer';
 import getenv from 'getenv';
+import { AuthDevController } from './auth.dev.controller';
+import { MailerServiceWrapper } from './mailer.service.wrapper';
 
 @Module({
   imports: [
@@ -35,7 +37,12 @@ import getenv from 'getenv';
       },
     }),
   ],
-  providers: [AuthService, MagicLoginStrategy, JwtStrategy],
-  controllers: [AuthController],
+  providers: [
+    AuthService,
+    MagicLoginStrategy,
+    JwtStrategy,
+    MailerServiceWrapper,
+  ],
+  controllers: [AuthController, AuthDevController],
 })
 export class AuthModule {}

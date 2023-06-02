@@ -7,8 +7,8 @@ export async function up(knex: Knex): Promise<void> {
     table
       .uuid('id', { primaryKey: true })
       .defaultTo(knex.raw('uuid_generate_v4()'));
-    table.string('username').notNullable();
-    table.string('email');
+    table.string('username').notNullable().unique();
+    table.string('email').notNullable().unique();
   });
 
   await knex.schema.createTable('links', (table) => {

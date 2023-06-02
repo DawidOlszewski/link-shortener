@@ -9,6 +9,8 @@
     "knex": "knex --knexfile \"./src/modules/database/db.config.ts\"",
     "migrate:latest": "npm run knex migrate:latest",
     "migrate:make": "npm run knex migrate:make",
+    "seed:make": "npm run knex seed:make",
+    "seed:run": "npm run knex seed:run",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -23,6 +25,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@cjs-exporter/camelcase-keys": "^8.0.2",
     "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/axios": "^2.0.0",
     "@nestjs/common": "^9.0.0",

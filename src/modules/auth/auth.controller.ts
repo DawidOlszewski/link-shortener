@@ -5,8 +5,9 @@ import { Request, Response } from 'express';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { User } from '@users/user.model';
 import { AuthGuard } from '@nestjs/passport';
+import { DevGuard } from 'src/guards/test.guard';
 
-@Controller()
+@Controller('auth')
 export class AuthController {
   constructor(
     private authService: AuthService,
@@ -27,8 +28,12 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt'))
   @Post('secure')
   async secure(@CurrentUser() user: User) {
-    console.log('controller sec', user);
-
     return user;
+  }
+
+  @UseGuards(DevGuard)
+  @Get('jwt')
+  async getJwt() {
+    return this.authService.generateTestToken();
   }
 }

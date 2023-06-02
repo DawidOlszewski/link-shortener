@@ -3,14 +3,14 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { User } from '@users/user.model';
-import { MailerService } from '@nestjs-modules/mailer';
 import getenv from 'getenv';
+import { MailerServiceWrapper } from './mailer.service.wrapper';
 
 @Injectable()
 export class MagicLoginStrategy extends PassportStrategy(Strategy) {
   constructor(
     private authService: AuthService,
-    private mailerService: MailerService,
+    private mailerService: MailerServiceWrapper,
   ) {
     super({
       secret: getenv('AUTHORIZATION_SECRET'),
@@ -19,16 +19,10 @@ export class MagicLoginStrategy extends PassportStrategy(Strategy) {
       },
       callbackUrl: 'http://localhost:3000/login/callback',
       sendMagicLink: async (destination: string, href: string) => {
-        console.log({ destination, href });
-        this.mailerService.sendMail({
-          to: 'dawid.olszewski.dev@gmail.com',
-          subject: 'authorization link',
-          text: `click to authorize: ${href}`,
-          html: `click to authorize: <a href="${href}">here</a>`,
-        });
+        this.mailerService.sendMail(destination, href);
       },
       verify: async (
-        payload: { destination: string }, // te rzeczy któe zostały wcześniej wysąłen
+        payload: { destination: string },
         callback: (exception: Error | null, user: User) => void,
       ) => {
         callback(null, await this.validate(payload));

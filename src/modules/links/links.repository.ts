@@ -7,30 +7,40 @@ export class LinksRepository {
 
   async generateLink({
     siteUrl,
-    link,
+    shortenedUrl,
     createdBy,
     expirationDate,
   }: {
     siteUrl: string;
-    link: string;
+    shortenedUrl: string;
     createdBy: User;
     expirationDate?: Date;
   }) {
-    const l = await this.linkModel.query().insert({
+    return this.linkModel.query().insertGraph({
       siteUrl,
-      link,
+      shortenedUrl,
       expirationDate,
       createdById: createdBy.id,
     });
-    return l;
   }
 
-  async getRedirectionUrl(link: string) {
-    const redirectionUrl = await this.linkModel.query().findOne({ link });
+  async getRedirectionUrl(shortenedUrl: string) {
+    const redirectionUrl = await this.linkModel
+      .query()
+      .findOne({ shortenedUrl });
+
     if (!redirectionUrl) {
       throw new NotFoundException();
     }
 
     return redirectionUrl;
+  }
+
+  async getUsersLinks(createdBy: User) {
+    return this.linkModel.query().modify('searchByCreator', createdBy);
+  }
+
+  async getById(id: string) {
+    return this.linkModel.query().findById(id).withGraphFetched('visits');
   }
 }

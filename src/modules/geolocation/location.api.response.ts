@@ -1,4 +1,4 @@
-export type LocationResponse = {
+export type LocationApiResponse = {
   ip_address: string;
   city: string;
   city_geoname_id: number;

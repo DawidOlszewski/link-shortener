@@ -1,12 +1,13 @@
 import { Model } from 'objection';
 import { Device } from '@devices/device.model';
 import { Link } from './link.model';
+import { Location } from '@geolocation/location.type';
 
 export class Visit extends Model {
   id!: string;
   linkId!: string;
   deviceId!: string;
-  location!: string;
+  location!: Location;
   device?: Device;
   link?: Link;
 
@@ -22,7 +23,15 @@ export class Visit extends Model {
         id: { type: 'string' },
         deviceId: { type: 'string' },
         linkId: { type: 'string' },
-        location: { type: 'string' },
+        location: {
+          //TODO: change to be correct
+          type: 'object',
+          // properties: {
+          //   street: { type: 'string' },
+          //   city: { type: 'string' },
+          //   zipCode: { type: 'string' },
+          // },
+        },
       },
     };
   }

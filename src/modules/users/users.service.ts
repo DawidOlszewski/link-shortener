@@ -15,9 +15,10 @@ export class UsersService {
   }
 
   async getByEmail(email: string) {
-    const user = await this.usersRepo.findByEmail(email);
-    console.log('get by emial users service', user);
+    return this.usersRepo.getByEmail(email);
+  }
 
-    return user;
+  async getById(id: string) {
+    return this.usersRepo.getById(id);
   }
 }
