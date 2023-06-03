@@ -16,10 +16,8 @@ export async function up(knex: Knex): Promise<void> {
       .uuid('id', { primaryKey: true })
       .defaultTo(knex.raw('uuid_generate_v4()'));
     table.uuid('createdById').references('id').inTable('users').notNullable();
-    table.timestamp('createdAt', { precision: 6, useTz: true });
     table.string('address');
     table.boolean('isActive').notNullable();
-    table.timestamp('expirationDate', { useTz: true });
   });
 }
 

@@ -24,13 +24,7 @@ export class Visit extends Model {
         deviceId: { type: 'string' },
         linkId: { type: 'string' },
         location: {
-          //TODO: change to be correct
           type: 'object',
-          // properties: {
-          //   street: { type: 'string' },
-          //   city: { type: 'string' },
-          //   zipCode: { type: 'string' },
-          // },
         },
       },
     };

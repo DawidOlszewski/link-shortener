@@ -8,7 +8,7 @@ import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { AllExceptionsFilter } from './errors.filter';
 
-//TODO: add expiration date to task, add created_at, add ip to visit, errors
+//TODO: add expiration date to task, add created_at
 
 @Module({
   imports: [

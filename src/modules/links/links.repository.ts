@@ -9,17 +9,14 @@ export class LinksRepository {
     siteUrl,
     shortenedUrl,
     createdBy,
-    expirationDate,
   }: {
     siteUrl: string;
     shortenedUrl: string;
     createdBy: User;
-    expirationDate?: Date;
   }) {
     return this.linkModel.query().insertGraph({
       siteUrl,
       shortenedUrl,
-      expirationDate,
       createdById: createdBy.id,
     });
   }

@@ -8,7 +8,6 @@ export class Link extends Model {
   siteUrl!: string;
   shortenedUrl!: string;
   isActive!: boolean;
-  expirationDate!: Date;
   createdBy?: User;
   visits?: Visit[];
 
@@ -20,6 +19,8 @@ export class Link extends Model {
     return 'links';
   }
 
+  //TODO: created_at exists in db, but objection team have problem with ajv_format https://github.com/Vincit/objection.js/pull/2218
+  //waiting for complition of this ticket
   static get jsonSchema() {
     return {
       type: 'object',
@@ -28,11 +29,9 @@ export class Link extends Model {
       properties: {
         id: { type: 'string' },
         createdById: { type: 'string' },
-        createdAt: { type: ['string', 'null'] }, //TODO: del null
         siteUrl: { type: 'string' },
         shortenedUrl: { type: 'string' },
         isActive: { type: 'boolean', default: true },
-        expirationDate: { type: ['string', 'null'] },
       },
     };
   }
