@@ -44,8 +44,10 @@ export class LinksService {
     ip: string;
   }) {
     const link = await this.getRedirectionLink(shortenedUrl);
+    console.log(link);
     await this.visitService.handleVisit({ ip, link });
     const { siteUrl } = link;
+    console.log(siteUrl);
 
     return siteUrl;
   }

@@ -37,10 +37,16 @@ export class LinksRepository {
   }
 
   async getUsersLinks(createdBy: User) {
-    return this.linkModel.query().modify('searchByCreator', createdBy);
+    return this.linkModel
+      .query()
+      .modify('searchByCreator', createdBy)
+      .withGraphFetched('device');
   }
 
   async getById(id: string) {
-    return this.linkModel.query().findById(id).withGraphFetched('visits');
+    return this.linkModel
+      .query()
+      .findById(id)
+      .withGraphFetched({ visits: { device: true } });
   }
 }

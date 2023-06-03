@@ -4,7 +4,7 @@ import { Model } from 'objection';
 export class Device extends Model {
   id!: string;
   ip!: string;
-  userId?: string;
+  usersId: string[];
   owner?: User;
 
   static get tableName() {
@@ -18,7 +18,13 @@ export class Device extends Model {
       properties: {
         id: { type: 'string' },
         ip: { type: 'string' },
-        userId: { type: ['string', 'null'] },
+        usersId: {
+          type: 'array',
+          items: {
+            type: 'string',
+          },
+          default: [],
+        },
       },
     };
   }

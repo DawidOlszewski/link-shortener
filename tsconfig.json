@@ -22,7 +22,7 @@
       "@devices/*": ["src/modules/devices/*"],
       "@links/*": ["src/modules/links/*"],
       "@users/*": ["src/modules/users/*"],
-      "@geolocation/*": ["src/modules/geolocation/*"],
+      "@geolocation/*": ["src/modules/geolocation-package/*"],
     }
   }
 }

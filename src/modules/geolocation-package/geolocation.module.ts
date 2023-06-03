@@ -4,6 +4,7 @@ import { HttpModule } from '@nestjs/axios';
 import { geolocatizationApiUrl } from './constants';
 import { GeolocalizationService } from './geolocation.service';
 
+//it should be linked to the project as a package maybe TODO:
 @Module({})
 export class GeolocationModule {
   public static register({ key, timeout, maxRedirects }: Options) {

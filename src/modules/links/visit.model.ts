@@ -1,7 +1,7 @@
 import { Model } from 'objection';
 import { Device } from '@devices/device.model';
 import { Link } from './link.model';
-import { Location } from '@geolocation/location.type';
+import { Location } from 'src/modules/geolocation-package/location.type';
 
 export class Visit extends Model {
   id!: string;
@@ -42,7 +42,7 @@ export class Visit extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Device,
         join: {
-          from: 'visits.linkId',
+          from: 'visits.deviceId',
           to: 'devices.id',
         },
       },
@@ -51,7 +51,7 @@ export class Visit extends Model {
         relation: Model.BelongsToOneRelation,
         modelClass: Link,
         join: {
-          from: 'visits.deviceId',
+          from: 'visits.linkId',
           to: 'links.id',
         },
       },

@@ -5,11 +5,11 @@ import { ObjectionModule } from '@willsoto/nestjs-objection';
 import { Link } from './link.model';
 import { Visit } from './visit.model';
 import { LinksRepository } from './links.repository';
-import { GeolocationModule } from '../geolocation/geolocation.module';
+import { GeolocationModule } from '../geolocation-package/geolocation.module';
 import getenv from 'getenv';
 import { VisitsService } from './visit.service';
 import { VisitsRepository } from './visit.repository';
-import { LinkOwnerGuard } from 'src/guards/link-owner.guard';
+import { LinkOwnerGuard } from 'src/modules/auth/guards/link-owner.guard';
 import { DevicesModule } from '@devices/devices.module';
 import { LinksController } from './links.controller';
 

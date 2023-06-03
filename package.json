@@ -9,6 +9,7 @@
     "knex": "knex --knexfile \"./src/modules/database/db.config.ts\"",
     "migrate:latest": "npm run knex migrate:latest",
     "migrate:make": "npm run knex migrate:make",
+    "migrate:rollback" : "npm run knex migrate:rollback",
     "seed:make": "npm run knex seed:make",
     "seed:run": "npm run knex seed:run",
     "build": "nest build",

@@ -5,7 +5,7 @@ import { UsersModule } from '@users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { DevicesModule } from '@devices/devices.module';
 
-//TODO: add expiration date to task, add created_at
+//TODO: add expiration date to task, add created_at, add ip to visit, errors
 
 @Module({
   imports: [

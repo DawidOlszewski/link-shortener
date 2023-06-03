@@ -1,7 +1,7 @@
-import { GeolocalizationService } from '@geolocation/geolocation.service';
+import { GeolocalizationService } from 'src/modules/geolocation-package/geolocation.service';
 import { Link } from './link.model';
 import { VisitsRepository } from './visit.repository';
-import { Location } from '@geolocation/location.type';
+import { Location } from 'src/modules/geolocation-package/location.type';
 import { DevicesService } from '@devices/devices.service';
 import { Inject } from '@nestjs/common';
 import getenv from 'getenv';

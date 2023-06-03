@@ -2,10 +2,10 @@ import { Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { MagicLoginStrategy } from './magic-login.strategy';
 import { Request, Response } from 'express';
-import { CurrentUser } from 'src/decorators/current-user.decorator';
+import { CurrentUser } from '@users/decorators/current-user.decorator';
 import { User } from '@users/user.model';
 import { AuthGuard } from '@nestjs/passport';
-import { DevGuard } from 'src/guards/test.guard';
+import { JwtGuard } from './guards/jwt.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -25,15 +25,9 @@ export class AuthController {
     return this.authService.generateTokens(user);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtGuard)
   @Post('secure')
   async secure(@CurrentUser() user: User) {
     return user;
-  }
-
-  @UseGuards(DevGuard)
-  @Get('jwt')
-  async getJwt() {
-    return this.authService.generateTestToken();
   }
 }

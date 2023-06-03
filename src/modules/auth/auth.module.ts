@@ -10,10 +10,13 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import getenv from 'getenv';
 import { AuthDevController } from './auth.dev.controller';
 import { MailerServiceWrapper } from './mailer.service.wrapper';
+import { DevicesModule } from '@devices/devices.module';
+import { JwtGuard } from './guards/jwt.guard';
 
 @Module({
   imports: [
     UsersModule,
+    DevicesModule,
     PassportModule,
     JwtModule.register({
       secret: getenv('AUTHORIZATION_SECRET'),
@@ -42,7 +45,9 @@ import { MailerServiceWrapper } from './mailer.service.wrapper';
     MagicLoginStrategy,
     JwtStrategy,
     MailerServiceWrapper,
+    JwtGuard,
   ],
   controllers: [AuthController, AuthDevController],
+  exports: [JwtGuard],
 })
 export class AuthModule {}

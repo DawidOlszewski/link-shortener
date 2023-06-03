@@ -1,16 +1,16 @@
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { LinksService } from './links.service';
-import { CurrentUser } from 'src/decorators/current-user.decorator';
+import { CurrentUser } from '@users/decorators/current-user.decorator';
 import { User } from '@users/user.model';
-import { AuthGuard } from '@nestjs/passport';
-import { LinkOwnerGuard } from 'src/guards/link-owner.guard';
+import { LinkOwnerGuard } from 'src/modules/auth/guards/link-owner.guard';
+import { JwtGuard } from '../auth/guards/jwt.guard';
 
 @Controller('links')
 export class LinksManagerController {
   constructor(private linkService: LinksService) {}
 
   @Post('gen-link')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtGuard)
   async genLink(
     @Body() genLinkRequest: { siteUrl: string; link: string },
     @CurrentUser() createdBy: User,
@@ -23,13 +23,13 @@ export class LinksManagerController {
   }
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtGuard)
   async getLinks(@CurrentUser() user: User) {
     return this.linkService.getUsersLinks(user);
   }
 
   @Get('/:id')
-  @UseGuards(AuthGuard('jwt'), LinkOwnerGuard)
+  @UseGuards(JwtGuard, LinkOwnerGuard)
   async getLink(@Param('id') id: string) {
     return this.linkService.getById(id);
   }
