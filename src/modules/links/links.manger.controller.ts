@@ -18,7 +18,7 @@ import { GenLinkDto } from './dtos/gen-link.dto';
 export class LinksManagerController {
   constructor(private linkService: LinksService) {}
 
-  @Post('gen-link')
+  @Post()
   @UseGuards(JwtGuard)
   async genLink(
     @Body() genLinkDto: GenLinkDto,
