@@ -16,10 +16,6 @@ export class LinksController {
       ip,
     });
 
-    console.log(url);
-
-    return {
-      url,
-    };
+    return { url };
   }
 }

@@ -1,11 +1,11 @@
 import { Inject, NotFoundException } from '@nestjs/common';
 import { User } from './user.model';
-import { RegisterUser } from './register-user.interface';
+import { RegisterUserDto } from './dtos/register-user.dto';
 
 export class UsersRepository {
   constructor(@Inject(User) private userModel: typeof User) {}
 
-  async registerUser(registerUser: RegisterUser) {
+  async registerUser(registerUser: RegisterUserDto) {
     return this.userModel.query().insert(registerUser);
   }
 

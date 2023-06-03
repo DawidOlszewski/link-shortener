@@ -9,7 +9,7 @@
     "knex": "knex --knexfile \"./src/modules/database/db.config.ts\"",
     "migrate:latest": "npm run knex migrate:latest",
     "migrate:make": "npm run knex migrate:make",
-    "migrate:rollback" : "npm run knex migrate:rollback",
+    "migrate:rollback": "npm run knex migrate:rollback",
     "seed:make": "npm run knex seed:make",
     "seed:run": "npm run knex seed:run",
     "build": "nest build",
@@ -39,6 +39,7 @@
     "dotenv": "^16.0.3",
     "getenv": "^1.0.0",
     "knex": "^2.4.2",
+    "nestjs-zod": "^2.3.2",
     "nodemailer": "^6.9.2",
     "objection": "^3.0.1",
     "passport": "^0.6.0",
@@ -46,7 +47,8 @@
     "passport-magic-login": "^1.2.2",
     "pg": "^8.11.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
