@@ -37,10 +37,7 @@ export class LinksRepository {
   }
 
   async getUsersLinks(createdBy: User) {
-    return this.linkModel
-      .query()
-      .modify('searchByCreator', createdBy)
-      .withGraphFetched('device');
+    return this.linkModel.query().modify('searchByCreator', createdBy);
   }
 
   async getById(id: string) {

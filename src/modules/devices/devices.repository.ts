@@ -22,16 +22,17 @@ export class DevicesRespository {
     if (!device) {
       throw new NotFoundException('device not found');
     }
-    console.log(device);
 
     const alreadyIn = device.usersId.some((userId) => userId === user.id);
 
-    if (!alreadyIn) {
+    if (alreadyIn) {
       return device;
     }
 
-    return device
+    const updatedDevice = await device
       .$query()
       .patchAndFetch({ usersId: [...device.usersId, user.id] });
+
+    return updatedDevice;
   }
 }

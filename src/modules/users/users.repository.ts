@@ -15,7 +15,6 @@ export class UsersRepository {
 
   async getByEmail(email: string) {
     const user = await this.userModel.query().findOne({ email });
-    console.log({ email, user });
     if (!user) {
       throw new NotFoundException();
     }
