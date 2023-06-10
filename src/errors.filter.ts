@@ -29,7 +29,7 @@ export class AllExceptionsFilter extends BaseExceptionFilter {
       this.httpAdapterHost.httpAdapter.reply(
         response,
         {
-          type: exception.name,
+          type: 'Not Found In DB',
         },
         HttpStatus.NOT_FOUND,
       );

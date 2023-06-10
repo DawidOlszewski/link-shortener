@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Device } from './device.model';
 import { User } from '@users/user.model';
 
@@ -17,11 +17,12 @@ export class DevicesRespository {
   }
 
   async addUser({ ip, user }: { ip: string; user: User }) {
-    const device = await this.deviceModel.query().findOne({ ip });
+    let device = await this.deviceModel.query().findOne({ ip });
 
     if (!device) {
-      throw new NotFoundException('device not found');
+      device = await this.createIfNotExist({ ip });
     }
+    console.log(device);
 
     const alreadyIn = device.usersId.some((userId) => userId === user.id);
 

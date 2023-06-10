@@ -1,4 +1,7 @@
-import { CamelCaseKeys } from 'camelcase-keys';
-import { LocationApiResponse } from './location.api.response';
-
-export type Location = CamelCaseKeys<LocationApiResponse>;
+export type Location = {
+  city: string;
+  country: string;
+  continent: string;
+  longitude: number;
+  latitude: number;
+};

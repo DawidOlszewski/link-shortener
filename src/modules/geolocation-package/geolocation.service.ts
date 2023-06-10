@@ -15,7 +15,6 @@ export class GeolocalizationService {
       this.httpService
         .request<LocationApiResponse>({
           params: { ip },
-          transformResponse: (res) => res.data,
         })
         .pipe(
           catchError((error) => {
@@ -28,6 +27,9 @@ export class GeolocalizationService {
         ),
     );
 
-    return camelcaseKeys<LocationApiResponse>(data);
+    const { city, country, longitude, latitude, continent } =
+      camelcaseKeys<LocationApiResponse>(data);
+
+    return { city, country, longitude, latitude, continent };
   }
 }
