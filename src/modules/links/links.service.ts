@@ -55,7 +55,7 @@ export class LinksService {
   //its to small to put it in different class,
   //put it in separate file, if it grows up
   async createRandomLink() {
-    const randomBuffer = await promisify(randomBytes)(10);
+    const randomBuffer = await promisify(randomBytes)(6);
     const link = randomBuffer.toString('hex');
     return link;
   }

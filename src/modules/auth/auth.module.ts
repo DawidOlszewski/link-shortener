@@ -47,7 +47,10 @@ import { JwtGuard } from './guards/jwt.guard';
     MailerServiceWrapper,
     JwtGuard,
   ],
-  controllers: [AuthController, AuthDevController],
+  controllers: [
+    AuthController,
+    ...(getenv('ENV') == 'dev' ? [AuthDevController] : []),
+  ],
   exports: [JwtGuard],
 })
 export class AuthModule {}

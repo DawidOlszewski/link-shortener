@@ -13,13 +13,16 @@ import { User } from '@users/user.model';
 import { LinkOwnerGuard } from 'src/modules/auth/guards/link-owner.guard';
 import { JwtGuard } from '../auth/guards/jwt.guard';
 import { GenLinkDto } from './dtos/gen-link.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('links')
+@ApiTags('links')
+@UseGuards(JwtGuard)
+@ApiBearerAuth()
 export class LinksManagerController {
   constructor(private linkService: LinksService) {}
 
   @Post()
-  @UseGuards(JwtGuard)
   async genLink(
     @Body() genLinkDto: GenLinkDto,
     @CurrentUser() createdBy: User,
@@ -32,13 +35,12 @@ export class LinksManagerController {
   }
 
   @Get()
-  @UseGuards(JwtGuard)
   async getLinks(@CurrentUser() user: User) {
     return this.linkService.getUsersLinks(user);
   }
 
   @Get('/:id')
-  @UseGuards(JwtGuard, LinkOwnerGuard)
+  @UseGuards(LinkOwnerGuard)
   async getLink(@Param('id', ParseUUIDPipe) id: string) {
     return this.linkService.getById(id);
   }
