@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/app
     restart: unless-stopped
-    links:
+     links:
       - postgres
     ports:
       - 3000:3000
@@ -20,7 +20,7 @@ services:
       DB_DATABASE: link-shortener
       DB_PORT: 5432
     extra_hosts:
-    - "host.docker.internal:host-gateway"
+      - "host.docker.internal:host-gateway"
 
   postgres:
     image: postgres
